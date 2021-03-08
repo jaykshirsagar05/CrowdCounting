@@ -11,16 +11,24 @@ import numpy as np
 import argparse, imutils
 import time, dlib, cv2, datetime
 from itertools import zip_longest
+from django.core.files.storage import FileSystemStorage
 t0 = time.time()
 
 def dashboard(request):
     return render(request, "index.html")
 
 def count(request):
-    run("crowdcounting/mobilenet_ssd/MobileNetSSD_deploy.prototxt", "crowdcounting/mobilenet_ssd/MobileNetSSD_deploy.caffemodel")
+    # videopath = request.FILES['myfile']
+    fs = FileSystemStorage()
+    video = request.FILES['myfile']
+    vname = fs.save(video.name, video)
+    vpath = fs.url(vname).strip("/")
+    # vpath = 'example_01.mp4'
+    print(vpath)
+    run("crowdcounting/mobilenet_ssd/MobileNetSSD_deploy.prototxt", "crowdcounting/mobilenet_ssd/MobileNetSSD_deploy.caffemodel", vpath)
     return render(request, "index.html")
 
-def run(protopath, modelpath):
+def run(protopath, modelpath, videopath):
 
 	# construct the argument parse and parse the arguments
 	# ap = argparse.ArgumentParser()
@@ -42,7 +50,7 @@ def run(protopath, modelpath):
 	args = {
 		"prototxt":protopath,
 		"model":modelpath,
-		"input":'crowdcounting/videos/example_01.mp4',
+		"input":videopath,
 		"output":'',
 		"confidence":0.4,
 		"skip_frames":30

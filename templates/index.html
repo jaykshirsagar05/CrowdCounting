@@ -37,7 +37,13 @@
   ======================================================== -->
 </head>
 
+
 <body>
+  <script>
+    function myfunction() {
+      var x = document.getElementById("myfile");
+    }
+  </script>
 
   <!-- ======= Top Bar ======= -->
   <div id="topbar" class="d-none d-lg-flex align-items-center fixed-top">
@@ -316,9 +322,13 @@
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
             <div class="icon-box">
+              <form action='count' method='POST' enctype="multipart/form-data">
+                {% csrf_token %}
               <div class="icon"><i class="bx bx-file"></i></div>
-              <h4><a href="">Sed ut perspiciatis</a></h4>
-              <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
+              <input type="file" id="myfile" name="myfile">
+              <input type="submit">
+              <h4><a href="">Start Counting</a></h4>
+              <p>Get live updates of video stream</p>
             </div>
           </div>
 
