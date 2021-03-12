@@ -25,7 +25,8 @@ def count(request):
     vpath = fs.url(vname).strip("/")
     # vpath = 'example_01.mp4'
     print(vpath)
-    run("crowdcounting/mobilenet_ssd/MobileNetSSD_deploy.prototxt", "crowdcounting/mobilenet_ssd/MobileNetSSD_deploy.caffemodel", vpath)
+    total = run("crowdcounting/mobilenet_ssd/MobileNetSSD_deploy.prototxt", "crowdcounting/mobilenet_ssd/MobileNetSSD_deploy.caffemodel", vpath)
+    print(total)
     return render(request, "index.html")
 
 def run(protopath, modelpath, videopath):
@@ -354,3 +355,4 @@ def run(protopath, modelpath, videopath):
 
 	# close any open windows
 	cv2.destroyAllWindows()
+	return x

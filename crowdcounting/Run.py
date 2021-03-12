@@ -338,6 +338,7 @@ def run(protopath, modelpath):
 
 	# close any open windows
 	cv2.destroyAllWindows()
+	return x
 
 
 ##learn more about different schedules here: https://pypi.org/project/schedule/
