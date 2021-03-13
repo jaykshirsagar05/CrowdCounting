@@ -3,14 +3,14 @@
 #===============================================================================
 # Enter mail below to receive real-time email alerts
 # e.g., 'email@gmail.com'
-MAIL = ''
+MAIL = 'jaykshirsagar502@gmail.com'
 # Enter the ip camera url (e.g., url = 'http://191.138.0.100:8040/video')
 url = ''
 
 # ON/OFF for mail feature. Enter True to turn on the email alert feature.
-ALERT = False
+ALERT = True
 # Set max. people inside limit. Optimise number below: 10, 50, 100, etc.
-Threshold = 10
+Threshold = 1
 # Threading ON/OFF
 Thread = False
 # Simple log to log the counting data

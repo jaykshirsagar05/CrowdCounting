@@ -27,7 +27,8 @@ def count(request):
     print(vpath)
     total = run("crowdcounting/mobilenet_ssd/MobileNetSSD_deploy.prototxt", "crowdcounting/mobilenet_ssd/MobileNetSSD_deploy.caffemodel", vpath)
     print(total)
-    return render(request, "index.html")
+    context = {'totalCount':total}
+    return render(request, "index.html",context)
 
 def run(protopath, modelpath, videopath):
 
@@ -355,4 +356,4 @@ def run(protopath, modelpath, videopath):
 
 	# close any open windows
 	cv2.destroyAllWindows()
-	return x
+	return totalDown
